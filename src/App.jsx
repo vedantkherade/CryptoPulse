@@ -2,9 +2,10 @@ import { useState } from 'react'
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
-import Header from './components/Common/Header/Header'
-import Footer from './components/Common/Footer/Footer'
-import MainComponent from './components/LandingPage/MainComponent/MainComponent'
+import { BrowserRouter, Route, Routes } from 'react-router-dom'
+import Home from './pages/Home'
+import Dashboard from './pages/Dashboard'
+
 
 
 function App() {
@@ -12,9 +13,17 @@ function App() {
 
   return (
     <>
-    <Header/>
-    <MainComponent/>
-    {/* <Footer/> */}
+    
+    <BrowserRouter>
+    <Routes>
+      <Route path="/" element={<Home/>}></Route> 
+      <Route path="/dashboard" element={<Dashboard/>}></Route>
+
+    </Routes>
+    
+    </BrowserRouter>
+    
+    
     </>
   )
 }

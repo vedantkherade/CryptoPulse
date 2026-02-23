@@ -2,6 +2,7 @@ import React from 'react'
 import "./styles.css"
 import MobileDrawer from './MobileDrawer'
 import Button from '../Button/Button'
+import { Link } from 'react-router-dom'
 
 
 function Header() {
@@ -11,21 +12,21 @@ function Header() {
         CryptoPulse<span style={{color: "var(--blue)"}}>.</span>
       </h1>
       <div className='links'>
-        <a href="/">
+        <Link to="/">
           <p className='link'>Home</p>
-        </a>
+        </Link>
 
-        <a href="/">
+        <Link href="/compare">
           <p className='link'>Compare</p>
-        </a>
+        </Link>
 
-        <a href="/">
+        <Link href="/watchlist">
          <p className='link'>Watchlist</p>
-        </a>
+        </Link>
 
-        <a href="#">
+        <Link to="/dashboard">
          <Button text={"Dashboard"} onClick={() => console.log("Btn Clicked")}/>
-        </a>
+        </Link>
         
         
       </div>

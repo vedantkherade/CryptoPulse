@@ -32,7 +32,10 @@
 }
 
 .td-right-align {
-  text-align: right;
+  display: flex !important;
+  justify-content: flex-end !important;
+  align-items: center !important;
+  
 }
 
 /* Watchlist Icon (Desktop default) */
@@ -64,6 +67,7 @@
 .mobile-td-mkt {
   display: none;
 }
+
 
 
 /* ===== Tablet View ===== */

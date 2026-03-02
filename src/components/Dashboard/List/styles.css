@@ -1,60 +1,105 @@
-.list-row{
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    gap: 0.5rem;
-    margin: 1.5rem;
-    padding: 1rem;
-    border-radius: 1rem;
+.list-row {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1.5rem;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 0.5rem;
+  padding: 0.5rem;
+  border-radius: 1rem;
 }
 
-.list-row:hover{
-    background-color: var(--darkgrey);
-    transition: all 0.3s;
+.list-row:hover {
+  background-color: var(--darkgrey);
+  transition: all 0.3s;
 }
 
-.list-row td{
-    text-align: left;
-    width: 18%;
+.list-row td {
+  text-align: left;
+  width: 18%;
 }
 
-.td-image{
-    width: 3rem !important;
-    margin-right: 2rem;
+/* Image column */
+.td-image {
+  width: min-content !important;
 }
 
-.td-center-align{
-    text-align: center;
+/* Alignments */
+.td-center-align {
+  text-align: center;
 }
 
-.td-right-align{
-    text-align: right;
+.td-right-align {
+  text-align: right;
 }
 
-.mobile-td-mkt{
+/* Hide mobile market cap by default */
+.mobile-td-mkt {
   display: none;
 }
 
-@media only screen and (max-width: 1100px) {
-  .td-icon{
-    display: none;
-  }
-}
 
+/* ===== Tablet View ===== */
 @media only screen and (max-width: 1000px) {
-  .td-total-volume{
-    display: none;
+
+  .td-image img {
+    width: 2rem !important;
+    height: 2rem !important;
   }
 
+  .price-chip {
+    min-width: 2rem !important;
+    font-size: 0.6rem !important;
+    border-width: 2px !important;
+    padding: 0.25rem 0.5rem !important;
+  }
+
+  .td-icon {
+    display: none !important;
+  }
 }
 
+
+/* ===== Mobile View ===== */
 @media only screen and (max-width: 800px) {
- .desktop-td-mkt{
-   display: none;
+
+  .list-row {
+    margin-top: 1rem;
+    gap: 0rem !important;
+    padding: 0rem;
   }
 
-  .mobile-td-mkt{
+  .td-total-volume {
+    display: none !important;
+  }
+
+  .desktop-td-mkt {
+    display: none !important;
+  }
+
+  .mobile-td-mkt {
     display: block;
   }
+
+  .coin-price {
+    font-size: 0.8rem !important;
+    margin-right: 0.5rem;
+  }
+
+  .coin-symbol,
+  .coin-name {
+    font-size: 80% !important;
+  }
 }
 
+
+/* ===== Small Mobile ===== */
+@media only screen and (max-width: 400px) {
+
+  .price-chip {
+    display: none;
+  }
+
+}

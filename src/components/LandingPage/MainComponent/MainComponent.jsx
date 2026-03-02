@@ -4,13 +4,15 @@ import Button from '../../Common/Button/Button'
 import iphone from "../../../assets/iphone.png"
 import gradient from "../../../assets/gradient.png"
 import {motion} from "framer-motion"
+import { Link } from 'react-router-dom'
+import { RWebShare } from "react-web-share";
 
 function MainComponent() {
   return (
-    <div className="flex-info">
-      <div className="left-component">
+    <div className="landing-wrapper">
+      <div className="landing-left">
         <motion.h1
-          className="track-crypto-heading"
+          className="heading-1"
           initial={{ opacity: 0, y: 50 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
@@ -19,7 +21,7 @@ function MainComponent() {
         </motion.h1>
 
         <motion.h1
-          className="real-time-heading"
+          className="heading-2"
           initial={{ opacity: 0, y: 50 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.5 }}
@@ -28,7 +30,7 @@ function MainComponent() {
         </motion.h1>
 
         <motion.p
-          className="info-text"
+          className="para"
           initial={{ opacity: 0, y: 50 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 1 }}
@@ -43,11 +45,23 @@ function MainComponent() {
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.5, delay: 1.5 }}
         >
+        <Link to="/dashboard">
           <Button text={"Dashboard"} />
+         </Link>
+
+         <RWebShare
+            data={{
+              text: "Crypto Dashboard made using React JS.",
+              url: "https://crypto-dashboard-dec.netlify.app/",
+              title: "CryptoDashboard.",
+            }}
+            onClick={() => console.log("shared successfully!")}
+          >
           <Button text={"Share"} outlined={true} />
+          </RWebShare>
         </motion.div>
       </div>
-      <div className="phone-container">
+      <div className="landing-right">
         <motion.img
           src={iphone}
           alt=""

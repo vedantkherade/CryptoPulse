@@ -44,6 +44,7 @@ export default function Tabs({coins}) {
 
         <TabPanel value="grid">
           <div className="grid-flex">
+            
             {coins.map((coin, i) => {
               return (
                 <Grid key={i} coin={coin}/>

@@ -5,9 +5,28 @@ import iphone from "../../../assets/iphone.png"
 import gradient from "../../../assets/gradient.png"
 import {motion} from "framer-motion"
 import { Link } from 'react-router-dom'
-import { RWebShare } from "react-web-share";
+
 
 function MainComponent() {
+
+  const handleShare = async () => {
+  if (navigator.share) {
+    try {
+      await navigator.share({
+        title: "CryptoDashboard",
+        text: "Crypto Dashboard made using React JS.",
+        url: "https://crypto-dashboard-dec.netlify.app/",
+      });
+      console.log("shared successfully!");
+    } catch (err) {
+      console.log("Share cancelled", err);
+    }
+  } else {
+    alert("Sharing not supported on this browser");
+  }
+};
+
+
   return (
     <div className="landing-wrapper">
       <div className="landing-left">
@@ -49,16 +68,7 @@ function MainComponent() {
           <Button text={"Dashboard"} />
          </Link>
 
-         <RWebShare
-            data={{
-              text: "Crypto Dashboard made using React JS.",
-              url: "https://crypto-dashboard-dec.netlify.app/",
-              title: "CryptoDashboard.",
-            }}
-            onClick={() => console.log("shared successfully!")}
-          >
-          <Button text={"Share"} outlined={true} />
-          </RWebShare>
+         <Button text={"Share"} outlined={true} onClick={handleShare} />
         </motion.div>
       </div>
       <div className="landing-right">

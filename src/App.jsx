@@ -7,6 +7,8 @@ import Home from "./pages/Home";
 import Dashboard from "./pages/Dashboard";
 import CoinPage from "./pages/CoinPage";
 import ComparePage from "./pages/ComparePage";
+import WatchlistPage from "./pages/WatchlistPage";
+import { ToastContainer } from "react-toastify";
 
 function App() {
 
@@ -49,13 +51,14 @@ function App() {
     <>
      <div className="cursor" id="cursor" />
       <div className="cursor-pointer" id="cursor-pointer" />
+      <ToastContainer />
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Home />}></Route>
           <Route path="/dashboard" element={<Dashboard />}></Route>
           <Route path="/coin/:id" element={<CoinPage />}></Route>
           <Route path="/compare" element={<ComparePage/>}></Route>
-      {/* <Route path="/watchlist" element={<WatchlistPage/>}></Route> */}
+         <Route path="/watchlist" element={<WatchlistPage/>}></Route>
         </Routes>
       </BrowserRouter>
     </>

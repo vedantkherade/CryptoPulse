@@ -1,20 +1,29 @@
-import React from "react";
+import React, { useState } from "react";
 import "./styles.css";
 import TrendingUpRoundedIcon from "@mui/icons-material/TrendingUpRounded";
 import TrendingDownRoundedIcon from "@mui/icons-material/TrendingDownRounded";
-import { Tooltip } from "@mui/material";
+import { Tooltip, IconButton } from "@mui/material";
 import { convertNumbers } from "../../../functions/convertNumbers";
 import { Link } from "react-router-dom";
-import {motion} from "framer-motion"
+import { motion } from "framer-motion";
+
+import StarBorderRoundedIcon from "@mui/icons-material/StarBorderRounded";
+import StarRoundedIcon from "@mui/icons-material/StarRounded";
+import { addToWatchlist } from "../../../functions/addToWatchlist";
+import { removeFromWatchlist } from "../../../functions/removeFromWatchlist";
+import { hasBeenAdded } from "../../../functions/hasBeenAdded";
 
 function List({ coin }) {
+  const [added, setAdded] = useState(hasBeenAdded(coin.id));
+
   return (
     <Link to={`/coin/${coin.id}`}>
       <motion.tr
-      initial={{ opacity: 0, x: -50 }}
+        initial={{ opacity: 0, x: -50 }}
         whileInView={{ opacity: 1, x: 0 }}
         transition={{ duration: 0.5, delay: 0.5 }}
-       className="list-row">
+        className="list-row"
+      >
         <Tooltip title="Coin Logo">
           <td className="td-image">
             <img src={coin.image} className="coin-logo" />
@@ -79,7 +88,6 @@ function List({ coin }) {
         <Tooltip title="Market Cap" placement="bottom-end">
           <td className="desktop-td-mkt">
             <p className="total_volume td-right-align">
-              {" "}
               ${coin.market_cap.toLocaleString()}
             </p>
           </td>
@@ -88,11 +96,44 @@ function List({ coin }) {
         <Tooltip title="Market Cap" placement="bottom-end">
           <td className="mobile-td-mkt">
             <p className="total_volume td-right-align">
-              {" "}
               ${convertNumbers(coin.market_cap)}
             </p>
           </td>
         </Tooltip>
+
+        <td className="td-right-align">
+          <IconButton
+            onClick={(e) => {
+              e.preventDefault();
+
+              if (added) {
+                removeFromWatchlist(coin.id);
+                setAdded(false);
+              } else {
+                addToWatchlist(coin.id);
+                setAdded(true);
+              }
+            }}
+          >
+            {added ? (
+              <StarRoundedIcon
+                className={`watchlist-icon ${
+                  coin.price_change_percentage_24h < 0
+                    ? "watchlist-icon-red"
+                    : "watchlist-icon-green"
+                }`}
+              />
+            ) : (
+              <StarBorderRoundedIcon
+                className={`watchlist-icon ${
+                  coin.price_change_percentage_24h < 0
+                    ? "watchlist-icon-red"
+                    : "watchlist-icon-green"
+                }`}
+              />
+            )}
+          </IconButton>
+        </td>
       </motion.tr>
     </Link>
   );

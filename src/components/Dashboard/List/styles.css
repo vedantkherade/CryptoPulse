@@ -35,6 +35,31 @@
   text-align: right;
 }
 
+/* Watchlist Icon (Desktop default) */
+.watchlist-icon {
+  color: var(--green);
+  border: 2px solid var(--green);
+  border-radius: 50%;
+  padding: 0.3rem;
+}
+
+.watchlist-icon:hover {
+  background-color: var(--green);
+  color: var(--white);
+  transition: all 0.3s;
+}
+
+/* Red coin support */
+.watchlist-icon-red {
+  color: var(--red);
+  border: 2px solid var(--red);
+}
+
+.watchlist-icon-red:hover {
+  background-color: var(--red);
+  color: var(--white);
+}
+
 /* Hide mobile market cap by default */
 .mobile-td-mkt {
   display: none;
@@ -58,6 +83,11 @@
 
   .td-icon {
     display: none !important;
+  }
+
+  .watchlist-icon {
+    font-size: 1rem !important;
+    padding: 0.25rem;
   }
 }
 

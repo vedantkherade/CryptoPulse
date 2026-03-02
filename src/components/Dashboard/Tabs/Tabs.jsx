@@ -1,17 +1,16 @@
-import React, { useState } from 'react';
-import Box from '@mui/material/Box';
-import Tab from '@mui/material/Tab';
-import TabContext from '@mui/lab/TabContext';
-import TabList from '@mui/lab/TabList';
-import TabPanel from '@mui/lab/TabPanel';
-import { createTheme, ThemeProvider } from '@mui/material';
-import { div } from 'framer-motion/client';
-import Grid from '../Grid/Grid';
+import React, { useState } from "react";
+import Tab from "@mui/material/Tab";
+import TabContext from "@mui/lab/TabContext";
+import TabList from "@mui/lab/TabList";
+import TabPanel from "@mui/lab/TabPanel";
+import { createTheme, ThemeProvider } from "@mui/material";
+import Grid from "../Grid/Grid";
+import List from "../List/List";
+import Button from "../../Common/Button/Button";
 import "./styles.css";
-import List from '../List/List';
 
-export default function Tabs({coins}) {
-  const [value, setValue] = useState('grid');
+export default function Tabs({ coins, setSearch }) {
+  const [value, setValue] = useState("grid");
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
@@ -26,7 +25,7 @@ export default function Tabs({coins}) {
     textTransform: "capitalize",
   };
 
- const theme = createTheme({
+  const theme = createTheme({
     palette: {
       primary: {
         main: "#3A80E9",
@@ -42,25 +41,34 @@ export default function Tabs({coins}) {
           <Tab label="List" value="list" sx={style} />
         </TabList>
 
+        {/* GRID TAB */}
         <TabPanel value="grid">
           <div className="grid-flex">
-            
-            {coins.map((coin, i) => {
-              return (
-                <Grid key={i} coin={coin}/>
-              );
-            })}
+            {coins.length === 0 ? (
+              <div className="no-items">
+                <h1>No Items Found</h1>
+                <Button text="Clear Search" onClick={() => setSearch("")} />
+              </div>
+            ) : (
+              coins.map((coin, i) => <Grid key={i} coin={coin} />)
+            )}
           </div>
         </TabPanel>
 
+        {/* LIST TAB (FIXED) */}
         <TabPanel value="list">
-          <table className="list-table">
-            {coins.map((item, i) => {
-              return (
-                <List coin={item} key={i}/>
-              );
-            })}
-          </table>
+          {coins.length === 0 ? (
+            <div className="no-items">
+              <h1>No Items Found</h1>
+              <Button text="Clear Search" onClick={() => setSearch("")} />
+            </div>
+          ) : (
+            <table className="list-table">
+              {coins.map((item, i) => (
+                <List coin={item} key={i} />
+              ))}
+            </table>
+          )}
         </TabPanel>
       </TabContext>
     </ThemeProvider>
